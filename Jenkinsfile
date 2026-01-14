@@ -1,18 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        stage('Build') {
-  steps {
-    bat 'node -v'
-    bat 'npm -v'
-    bat 'npm install'
-    bat 'npm run build'
-  }
-}
-
-    }
-
     stages {
         stage('Clone Code') {
             steps {
@@ -21,15 +9,22 @@ pipeline {
             }
         }
 
+        stage('Check Node & NPM') {
+            steps {
+                bat 'node -v'
+                bat 'npm -v'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Build React App') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         }
     }
