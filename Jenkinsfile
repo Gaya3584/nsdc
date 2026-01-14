@@ -2,7 +2,15 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJS-18'
+        stage('Build') {
+  steps {
+    bat 'node -v'
+    bat 'npm -v'
+    bat 'npm install'
+    bat 'npm run build'
+  }
+}
+
     }
 
     stages {
